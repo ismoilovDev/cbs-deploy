@@ -5,7 +5,8 @@ import {
    authRoutes,
 } from "./routes";
 
-const { auth } = NextAuth(authConfig);
+// const { auth } = NextAuth(authConfig);
+export default NextAuth(authConfig).auth;
 
 // export default auth((req: any) => {
 //    const { nextUrl } = req;

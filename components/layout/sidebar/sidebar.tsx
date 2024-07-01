@@ -10,9 +10,7 @@ import { Logo } from "@/components/assets/logo";
 const [minWidth, maxWidth, defaultWidth] = [200, 500, 350];
 
 export function Sidebar() {
-   const [width, setWidth] = useState(
-      parseInt(localStorage.getItem("sidebarWidth") || "") || defaultWidth
-   );
+   const [width, setWidth] = useState(defaultWidth);
    const isResized = useRef(false);
 
    useEffect(() => {
@@ -35,9 +33,9 @@ export function Sidebar() {
       });
    }, []);
 
-   useEffect(() => {
-      localStorage.setItem("sidebarWidth", width.toString());
-   }, [width]);
+   // useEffect(() => {
+   //    localStorage.setItem("sidebarWidth", width.toString());
+   // }, [width]);
 
    return (
       <aside id="sidebar_wrap" className={cn(styles.sidebar_wrap, 'flex border bg-white dark:border-slate-50/[0.06] dark:bg-slate-900/75 border-collapse')}>

@@ -21,7 +21,6 @@ const NextBreadcrumb = ({ capitalizeLinks }: TBreadCrumbProps) => {
 
    const paths = usePathname()
    const pathNames = paths.split('/').filter(path => path)
-   const currentPath = document.title
 
    return (
       <Breadcrumb>

@@ -11,21 +11,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 import { TableTh } from "@/components/table/table-th"
-
-export type ClientT = {
-   id: string,
-   code: number,
-   full_name: string
-   open_date: string,
-   close_date: string,
-   branch: object,
-}
+import { GroupListType } from "@/types"
 
 interface ColumnsProps {
    handleDelete: (id: string) => void;
 }
 
-export const columns = ({ handleDelete }: ColumnsProps): ColumnDef<ClientT>[] => [
+export const columns = ({ handleDelete }: ColumnsProps): ColumnDef<GroupListType>[] => [
    {
       accessorKey: "id",
       header: "#",

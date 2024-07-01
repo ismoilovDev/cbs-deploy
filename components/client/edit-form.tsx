@@ -11,7 +11,7 @@ import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { FormFieldItem } from '@/components/form/form-field-item';
-import { BaseApi } from '@/app/api/[...nextauth]/route';
+import { BaseApi } from '@/app/api/[...nextauth]/base-api';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useFileHandler } from '@/app/hooks/use-file-upload';
 import { Modal } from '../modal/modal';
@@ -360,8 +360,8 @@ export const EditForm: React.FC<Props> = ({ client_id, data, btn_txt }) => {
                                     </div>
                                  </div>
                                  <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                    <DetailItem title='Viloyat/Respublika' value={address.region.name} />
-                                    <DetailItem title='Tuman' value={address.district.name} />
+                                    <DetailItem title='Viloyat/Respublika' value={address.region_id} />
+                                    <DetailItem title='Tuman' value={address.district_id} />
                                     <DetailItem title='Manzil' value={address.address} />
                                     <DetailItem title='Aktiv' value={address.status ? "Ha" : "Yo'q"} />
                                  </div>

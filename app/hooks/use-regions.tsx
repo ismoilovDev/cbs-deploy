@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BaseApi } from "../api/[...nextauth]/route";
+import { BaseApi } from "../api/[...nextauth]/base-api";
 
 type RegionType = {
    id: string;

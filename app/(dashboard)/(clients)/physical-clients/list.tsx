@@ -3,7 +3,7 @@
 import { DataTable } from "@/components/table/data-table"
 import { columns as createColumns } from "./columns"
 import { ClientListType } from "@/types";
-import { BaseApi } from "@/app/api/[...nextauth]/route";
+import { BaseApi } from "@/app/api/[...nextauth]/base-api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteRequest } from "@/actions/delete";
 import { EmptyTable } from "@/components/table/empty-table";

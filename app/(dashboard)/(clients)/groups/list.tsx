@@ -6,7 +6,7 @@ import { DataTable } from "@/components/table/data-table"
 import { EmptyTable } from "@/components/table/empty-table";
 import { columns as createColumns } from "./columns"
 import { GroupListType, PaginationType } from "@/types";
-import { BaseApi } from "@/app/api/[...nextauth]/route";
+import { BaseApi } from "@/app/api/[...nextauth]/base-api";
 import { deleteRequest } from "@/actions/delete";
 
 interface GroupsPromise {

@@ -11,7 +11,7 @@ import { Form } from "@/components/ui/form";
 import { GroupSchema } from "@/schemas";
 import { GroupType } from "@/types";
 import { FormFieldItem } from "../form/form-field-item";
-import { BaseApi } from "@/app/api/[...nextauth]/route";
+import { BaseApi } from "@/app/api/[...nextauth]/base-api";
 import { Button } from "../ui/button";
 import { ClientsMultiSelect } from "../ui/async-select";
 

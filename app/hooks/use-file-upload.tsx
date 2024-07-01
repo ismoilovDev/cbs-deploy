@@ -1,7 +1,7 @@
 import { useState, useCallback, ChangeEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { UploadedFile } from '@/types';
-import { BaseApi } from '../api/[...nextauth]/route';
+import { BaseApi } from '../api/[...nextauth]/base-api';
 import { useToast } from '@/components/ui/use-toast';
 
 export const useFileHandler = () => {

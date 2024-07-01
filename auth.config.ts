@@ -1,5 +1,5 @@
-import type { NextAuthConfig } from "next-auth";
 import Credentials from 'next-auth/providers/credentials';
+import type { NextAuthConfig } from "next-auth";
 import { LoginSchema } from '@/schemas/index';
 
 async function login(credentials: { email: string, password: string }) {

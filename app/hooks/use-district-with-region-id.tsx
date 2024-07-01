@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BaseApi } from "../api/[...nextauth]/route";
+import { BaseApi } from "../api/[...nextauth]/base-api";
 
 export type DistrictType = {
    id: string;

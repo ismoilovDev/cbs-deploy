@@ -1,5 +1,5 @@
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { BaseApi } from "../api/[...nextauth]/base-api";
 
 type RegionType = {
    id: string;
@@ -9,12 +9,20 @@ type RegionType = {
 
 export function useRegions() {
    const [regions, setRegions] = useState<RegionType[] | []>([]);
+   const session = useSession()
 
    useEffect(() => {
       async function fetchRegions() {
          try {
-            const { data } = await BaseApi.get('/regions');
-            setRegions(data.data);
+            const response = await fetch(`/regions`, {
+               headers: {
+                  'Authorization': `Bearer ${session.data?.user.token}`
+               }
+            });
+            if (response.ok) {
+               const data: any = response.json()
+               setRegions(data.data);
+            }
          } catch (error) {
             console.error(error);
          }

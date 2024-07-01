@@ -3,7 +3,7 @@
 import ContentHeader from "@/components/layout/content/content-header"
 import ContentCard from "@/components/layout/content/content-card"
 import { DataTable } from "@/components/table/data-table"
-import { BaseApi } from "@/app/api/[...nextauth]/base-api"
+import { BaseApi } from "@/app/api/[...nextauth]/route"
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Users, columns as createColumns } from "./columns"
 import { deleteRequest } from "@/actions/delete"

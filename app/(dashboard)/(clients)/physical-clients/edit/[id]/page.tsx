@@ -3,7 +3,7 @@
 import React from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { EditForm } from '@/components/client/edit-form'
-import { BaseApi } from '@/app/api/[...nextauth]/base-api'
+import { BaseApi } from '@/app/api/[...nextauth]/route'
 import { useTitle } from '@/app/hooks/use-meta-title'
 import ContentCard from '@/components/layout/content/content-card'
 import Title from '@/components/title/title'

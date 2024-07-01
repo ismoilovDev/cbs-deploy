@@ -11,9 +11,9 @@ import { Form } from "@/components/ui/form";
 import { GroupSchema } from "@/schemas";
 import { GroupType } from "@/types";
 import { FormFieldItem } from "../form/form-field-item";
-import { BaseApi } from "@/app/api/[...nextauth]/base-api";
 import { Button } from "../ui/button";
 import { ClientsMultiSelect } from "../ui/async-select";
+import { useSessionClientComponent } from "@/app/hooks/use-session-client-component";
 
 const branchOptions = [
    { value: "1", label: "Chirchiq filiali" },
@@ -41,6 +41,7 @@ export function GroupForm({ defaultValues, btn_txt }: Props) {
    const [selected, setSelected] = useState<string[]>([])
    const [selectedOptions, setSelectedOptions] = useState<OptionType[]>([])
    const [isPending, startTransition] = useTransition();
+   const { token } = useSessionClientComponent()
    const { toast } = useToast();
    const router = useRouter();
 
@@ -76,8 +77,13 @@ export function GroupForm({ defaultValues, btn_txt }: Props) {
          startTransition(async () => {
             const postData = { ...values, clients_id: selected }
             try {
-               const res = await BaseApi.post("/groups", postData);
-               if (res.data) {
+               const res = await fetch("/groups", {
+                  method: "POST",
+                  headers: {
+                     'Authorization': `Bearer ${token}`
+                  }
+               });
+               if (res.ok) {
                   setSuccess("Guruh muvaffaqiyatli qo'shildi");
                   router.push('/groups', { scroll: false })
                   toast({

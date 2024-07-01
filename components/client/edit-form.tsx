@@ -11,7 +11,7 @@ import { Form } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { FormFieldItem } from '@/components/form/form-field-item';
-import { BaseApi } from '@/app/api/[...nextauth]/base-api';
+import { BaseApi } from '@/app/api/[...nextauth]/route';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useFileHandler } from '@/app/hooks/use-file-upload';
 import { Modal } from '../modal/modal';

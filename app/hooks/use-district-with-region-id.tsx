@@ -1,5 +1,5 @@
+import { getSession, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { BaseApi } from "../api/[...nextauth]/base-api";
 
 export type DistrictType = {
    id: string;
@@ -9,12 +9,20 @@ export type DistrictType = {
 
 export function useDistricts(id: string) {
    const [districts, setDistricts] = useState<DistrictType[] | []>([]);
+   const session = useSession()
 
    useEffect(() => {
       async function fetchDistricts() {
          try {
-            const { data } = await BaseApi.get(`/regions/${id}/districts`);
-            setDistricts(data.data.districts);
+            const response = await fetch(`/regions/${id}/districts`, {
+               headers: {
+                  'Authorization': `Bearer ${session.data?.user.token}`
+               }
+            });
+            if (response.ok) {
+               const data: any = response.json()
+               setDistricts(data.data.districts);
+            }
          } catch (error) {
             console.error(error);
          }

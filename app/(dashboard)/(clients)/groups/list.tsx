@@ -6,8 +6,8 @@ import { DataTable } from "@/components/table/data-table"
 import { EmptyTable } from "@/components/table/empty-table";
 import { columns as createColumns } from "./columns"
 import { GroupListType, PaginationType } from "@/types";
-import { BaseApi } from "@/app/api/[...nextauth]/base-api";
 import { deleteRequest } from "@/actions/delete";
+import { useSessionClientComponent } from "@/app/hooks/use-session-client-component";
 
 interface GroupsPromise {
    data: GroupListType[];
@@ -22,10 +22,14 @@ interface TableProps {
    limit: number;
 }
 
-async function getData(query: string): Promise<GroupsPromise> {
+async function getData(query: string, token: string): Promise<GroupsPromise> {
    try {
-      const response = await BaseApi.get<GroupsPromise>(`/groups${query}`);
-      return response.data;
+      const response = await fetch(`/groups${query}`, {
+         headers: {
+            'Authorization': `Bearer ${token}`
+         }
+      });
+      return response.json();
    } catch (error: any) {
       throw new Error(error.message);
    }
@@ -38,11 +42,12 @@ export function Table({
 }) {
    const queryClient = useQueryClient()
    const [totalPages, setTotalPages] = useState<number>(1)
+   const { token } = useSessionClientComponent()
    const search = `?search=${queries.search}&page=${queries.page}&limit=${queries.limit}`
 
    const { data, isError, refetch } = useQuery({
       queryKey: ['groups', search],
-      queryFn: () => getData(search),
+      queryFn: () => getData(search, token as string),
       enabled: !!search
    })
 

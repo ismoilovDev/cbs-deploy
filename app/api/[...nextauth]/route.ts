@@ -1,8 +1,6 @@
-import { getSession } from "next-auth/react"
+import NextAuth from 'next-auth';
+import { authConfig } from "@/auth.config";
 
-export async function GET() {
-   const session = await getSession()
-   if (!session) {
-      return new Response(null, { status: 401 })
-   }
-}
+const handler = NextAuth(authConfig);
+
+export { handler as GET, handler as POST };

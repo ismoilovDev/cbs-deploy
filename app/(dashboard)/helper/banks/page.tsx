@@ -2,7 +2,6 @@ import { BankTableType, columns } from "./columns"
 import { DataTable } from "./data-table"
 import ContentHeader from "@/components/layout/content/content-header"
 import ContentCard from "@/components/layout/content/content-card"
-import { cookies } from 'next/headers'
 
 
 async function getData(): Promise<BankTableType[]> {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query';
-import { BaseApi } from '@/app/api/[...nextauth]/base-api';
+import { BaseApi } from '@/app/api/[...nextauth]/route';
 
 interface User {
    id: string;

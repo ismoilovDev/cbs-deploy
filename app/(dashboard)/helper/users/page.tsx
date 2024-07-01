@@ -4,8 +4,9 @@ import ContentHeader from "@/components/layout/content/content-header"
 import ContentCard from "@/components/layout/content/content-card"
 import { DataTable } from "@/components/table/data-table"
 import { BaseApi } from "@/app/api/[...nextauth]/route"
-import { useQuery } from '@tanstack/react-query'
-import { Users, columns } from "./columns"
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Users, columns as createColumns } from "./columns"
+import { deleteRequest } from "@/actions/delete"
 
 interface UsersPromise {
    data: Users[]
@@ -22,6 +23,7 @@ async function getData(): Promise<Users[]> {
 
 
 export default function UsersPage() {
+   const queryClient = useQueryClient()
 
    const { data, isLoading, isError } = useQuery({
       queryKey: ['users'],
@@ -40,6 +42,18 @@ export default function UsersPage() {
       return <div>No data available</div>;
    }
 
+   const deleteMuatation = useMutation({
+      mutationFn: deleteRequest,
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: ['clients'] })
+      }
+   });
+
+   const handleDelete = (id: string) => {
+      deleteMuatation.mutate(`/clients/${id}`)
+   }
+
+   const columns = createColumns({ handleDelete });
 
    return (
       <div className="mx-auto py-10">
@@ -49,12 +63,4 @@ export default function UsersPage() {
          </ContentCard>
       </div>
    )
-}
-
-export const handleDelete = async (id: string) => {
-   try {
-      await BaseApi.delete(`/clients/${id}`);
-   } catch (error: any) {
-      throw new Error(error.message);
-   }
 }

@@ -20,7 +20,7 @@ export function useDistricts(id: string) {
          }
       }
       fetchDistricts();
-   }, []);
+   }, [id]);
 
    return districts;
 }

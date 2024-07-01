@@ -48,8 +48,7 @@ export function Table({
 
    useEffect(() => {
       setTotalPages(data?.paginate.total_pages as number)
-      console.log(data)
-   }, [])
+   }, [data])
 
    const deleteMuatation = useMutation({
       mutationFn: deleteRequest,

@@ -21,7 +21,7 @@ const SettingsTab: React.FC = () => {
          <div>
             {
                settings.map(item => (
-                  <div>
+                  <div key={item.title}>
                      <Link href={`${item.path}`}>
                         <span>
                            {item.icon}

@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { handleDelete } from "./page"
 
 export type Users = {
    id: string
@@ -20,7 +19,11 @@ export type Users = {
    is_email_verified: boolean
 }
 
-export const columns: ColumnDef<Users>[] = [
+interface ColumnsProps {
+   handleDelete: (id: string) => void;
+}
+
+export const columns = ({ handleDelete }: ColumnsProps): ColumnDef<Users>[] => [
    {
       accessorKey: "id",
       header: "",

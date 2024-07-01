@@ -57,7 +57,7 @@ export default function JuridicalClients() {
          return <EmptyTable columns={columns} refetchHandler={refetch} />;
       }
       return <DataTable columns={columns} data={[]} single_path="/physical-clients" />;
-   }, [isLoading, isError, data, refetch]);
+   }, [isLoading, isError, data, refetch, columns]);
 
    return (
       <React.Fragment>

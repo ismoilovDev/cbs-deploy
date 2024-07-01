@@ -50,7 +50,7 @@ export function Table({
 
    useEffect(() => {
       setTotalPages(data?.paginate.total_pages)
-   }, [])
+   }, [data])
 
    const deleteMuatation = useMutation({
       mutationFn: deleteRequest,

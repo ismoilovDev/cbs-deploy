@@ -13,21 +13,22 @@ interface User {
 
 async function getData({ id }: any): Promise<User[]> {
    try {
-      const { data } = await BaseApi.get<User[]>(`/users/${id}`);
+      const { data } = await BaseApi.get(`/users/${id}`);
       return data.data;
    } catch (error: any) {
       throw new Error(error.message);
    }
 }
 
-const UserPage = ({ params }: any) => {
-   if (!params?.id) {
-      return <div>No user ID provided</div>;
-   }
+const UserPage = ({
+   params: { id },
+}: {
+   params: { id: string }
+}) => {
 
    const { data, isLoading, isError } = useQuery({
-      queryKey: ['user', params.id],
-      queryFn: () => getData({ id: params.id })
+      queryKey: ['user', id],
+      queryFn: () => getData({ id })
    });
 
    if (isLoading) {
@@ -38,7 +39,7 @@ const UserPage = ({ params }: any) => {
       return <div>Error fetching user data</div>;
    }
 
-   const user = data;
+   const user: User = data;
 
    return (
       <div>
